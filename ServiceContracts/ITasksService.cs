@@ -27,10 +27,6 @@ namespace ServiceContracts
         /// <returns>Returns matching task object</returns>
         Task<TaskResponse?> GetTaskByTaskId(Guid? taskId);
 
-        //Task<IEnumerable<TaskResponse>> GetFilteredTasks(string searchBy, string? searchString);
-
-        //Task<IEnumerable<TaskResponse>> GetSortedTasks(IEnumerable<TaskResponse> allTasks, string sortBy, SortOrderOptions sortOrder);
-
         /// <summary>
         /// Updates the specified task details based on the given Id
         /// </summary>

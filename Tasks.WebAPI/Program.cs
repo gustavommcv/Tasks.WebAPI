@@ -4,7 +4,6 @@ using Repositories;
 using RepositoryContracts;
 using ServiceContracts;
 using Services;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +24,15 @@ builder.Services.AddScoped<ITasksRepository, TasksRepository>();
 // Tasks Service
 builder.Services.AddScoped<ITasksService, TasksService>();
 
+// CORS - Allow Front End (Live server)
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder.WithOrigins("http://127.0.0.1:5500")
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
+
 /////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 
@@ -37,6 +45,8 @@ if (builder.Environment.IsDevelopment())
 
 /////////////////////////////////////////////////
 // Configure the HTTP request pipeline.
+
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 

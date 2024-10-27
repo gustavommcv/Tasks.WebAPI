@@ -24,6 +24,22 @@ namespace Tasks.WebAPI.Controllers
             return Ok(tasks);
         }
 
+        [HttpGet("pending")]
+        public async Task<IActionResult> GetPendingTasks()
+        {
+            var tasks = await _tasksService.GetAllTasks();
+
+            return Ok(tasks.Where(t => t.status == Status.Pending.ToString()));
+        }
+
+        [HttpGet("completed")]
+        public async Task<IActionResult> GetCompletedTasks()
+        {
+            var tasks = await _tasksService.GetAllTasks();
+
+            return Ok(tasks.Where(t => t.status == Status.Completed.ToString()));
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTaskById(Guid id)
         {
