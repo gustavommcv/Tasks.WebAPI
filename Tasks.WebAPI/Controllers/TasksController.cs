@@ -50,10 +50,11 @@ namespace Tasks.WebAPI.Controllers
             return Ok(taskResponse);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> PostTask(TaskPostRequest taskAddRequest)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
             var taskResponse = await _tasksService.AddTask(taskAddRequest);
 
             return CreatedAtAction(nameof(GetTaskById), new { id = taskResponse.Id }, taskResponse);
