@@ -6,8 +6,7 @@
 # appsettings.json
 appsettings.json
 
-# (restante do seu conteúdo .gitignore)
-
+.idea
 
 # User-specific files
 *.rsuser

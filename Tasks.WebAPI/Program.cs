@@ -28,7 +28,7 @@ builder.Services.AddScoped<ITasksService, TasksService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
-        builder => builder.WithOrigins("http://127.0.0.1:5500")
+        b => b.WithOrigins("http://127.0.0.1:5500")
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });
